@@ -27,7 +27,7 @@ const Calculator = () => {
             "grid place-items-center first:place-items-end    rounded-lg";
           if (index === 0) {
             className +=
-              " bg-black col-span-4  text-3xl place-items-end p-1 text-clip";
+              " bg-black col-span-4  text-3xl place-items-end p-1 ";
           } else if (["C", "⌫", "-", "x", "/", "+"].includes(content)) {
             className += " bg-zinc-500 hover:bg-zinc-800";
           } else if (content === "=") {

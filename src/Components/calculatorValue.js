@@ -1,7 +1,6 @@
 import React from "react";
 
 const calculatorValue = [
-  "",
   "C",
   "⌫",
   "/",
@@ -20,7 +19,6 @@ const calculatorValue = [
   "=",
   "0",
   ".",
- 
 ];
 
 export default calculatorValue;
