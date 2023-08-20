@@ -16,7 +16,7 @@ const DivButtons = () => {
         setUpdate(result.toString());
       } catch (error) {}
     } else if (
-      (index >= 2 && index <= 18 && index !== 15) ||
+      (index >= 2 && index <= 18 && index !== 15 && update.length < 18) ||
       (index === 17 && !update.includes(".")) ||
       (index === 2 && !update.includes("/")) ||
       (index === 3 && !update.includes("*")) ||
