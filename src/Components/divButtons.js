@@ -52,7 +52,7 @@ const DivButtons = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-4 rounded-xl grid-rows-6 w-screen h-screen sm:w-[21rem] md:h-[30rem] md:w-[25rem]  sm:h-[27rem] gap-0.5">
+    <div className="grid grid-cols-4 rounded-xl grid-rows-6  sm:w-[21rem] md:h-[30rem] md:w-[25rem]  sm:h-[27rem] gap-0.5">
       <div className="col-span-4 bg-black text-3xl p-1 rounded-xl grid place-content-end">
         {update}
       </div>
