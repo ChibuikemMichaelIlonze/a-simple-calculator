@@ -1,5 +1,6 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import calculatorValue from "./calculatorValue";
+import * as math from "mathjs";
 
 const DivButtons = () => {
   const [update, setUpdate] = useState("");
@@ -9,14 +10,50 @@ const DivButtons = () => {
       setUpdate(update.slice(0, -1));
     } else if (index === 0) {
       setUpdate("");
-    } else if (index >= 4 && index <= 18 && index !=15 &&update.length<18) {
-      setUpdate(update + content);
+    } else if (index === 15) {
+      try {
+        const result = math.evaluate(update);
+        setUpdate(result.toString());
+      } catch (error) {}
+    } else if (
+      (index >= 2 && index <= 18 && index !== 15) ||
+      (index === 17 && !update.includes(".")) ||
+      (index === 2 && !update.includes("/")) ||
+      (index === 3 && !update.includes("*")) ||
+      (index === 7 && !update.includes("-")) ||
+      (index === 11 && !update.includes("+"))
+    ) {
+      if (
+        !(content === "." && update.includes(".")) &&
+        !(content === "/" && update.includes("/")) &&
+        !(content === "*" && update.includes("*")) &&
+        !(content === "-" && update.includes("-")) &&
+        !(content === "+" && update.includes("+"))
+      ) {
+        setUpdate(update + content);
+      }
     }
   };
-  console.log(update);
+
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      const keyContent = event.key;
+      const keyIndex = calculatorValue.indexOf(keyContent);
+      if (keyIndex !== -1) {
+        handleClick(keyContent, keyIndex);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyPress);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+    };
+  }, []);
+
   return (
-    <div className="grid  grid-cols-4 rounded-xl grid-rows-6 w-80 h-96  gap-0.5">
-      <div className="col-span-4  bg-black  text-3xl  p-1 rounded-xl grid place-content-end ">
+    <div className="grid grid-cols-4 rounded-xl grid-rows-6 w-screen h-screen sm:w-[21rem] md:h-[30rem] md:w-[25rem]  sm:h-[27rem] gap-0.5">
+      <div className="col-span-4 bg-black text-3xl p-1 rounded-xl grid place-content-end">
         {update}
       </div>
       {calculatorValue.map((content, index) => {

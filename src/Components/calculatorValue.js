@@ -1,10 +1,10 @@
-import React from "react";
+
 
 const calculatorValue = [
   "C",
   "⌫",
   "/",
-  "×",
+  "*",
   "7",
   "8",
   "9",
