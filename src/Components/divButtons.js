@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import calculatorValue from "./calculatorValue";
 import * as math from "mathjs";
 
+import "./divButtons.css"
 const DivButtons = () => {
   const [update, setUpdate] = useState("");
 
@@ -31,7 +32,11 @@ const DivButtons = () => {
         !(content === "+" && update.includes("+"))
       ) {
         setUpdate(update + content);
-        window.navigator.vibrate(2000)
+        const buttonElement = document.getElementById(`button-${index}`);
+        buttonElement.classList.add("vibrate-animation");
+        setTimeout(() => {
+          buttonElement.classList.remove("vibrate-animation");
+        }, 300);
       }
     }
   };
