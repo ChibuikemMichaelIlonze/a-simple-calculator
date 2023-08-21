@@ -30,8 +30,8 @@ const DivButtons = () => {
         !(content === "-" && update.includes("-")) &&
         !(content === "+" && update.includes("+"))
       ) {
-        window.navigator.vibrate(2000)
         setUpdate(update + content);
+        window.navigator.vibrate(2000)
       }
     }
   };
