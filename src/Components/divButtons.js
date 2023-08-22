@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from "react";
 import calculatorValue from "./calculatorValue";
 import * as math from "mathjs";
+import Okay from "./ok.wav"
 
-import "./divButtons.css"
 const DivButtons = () => {
   const [update, setUpdate] = useState("");
 
+  let audio = new Audio(Okay);
   const handleClick = (content, index) => {
+    audio.play();
     if (index === 1) {
       setUpdate(update.slice(0, -1));
     } else if (index === 0) {
@@ -31,12 +33,8 @@ const DivButtons = () => {
         !(content === "-" && update.includes("-")) &&
         !(content === "+" && update.includes("+"))
       ) {
+       
         setUpdate(update + content);
-        const buttonElement = document.getElementById(`button-${index}`);
-        buttonElement.classList.add("vibrate-animation");
-        setTimeout(() => {
-          buttonElement.classList.remove("vibrate-animation");
-        }, 300);
       }
     }
   };
@@ -55,7 +53,7 @@ const DivButtons = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyPress);
     };
-  }, []);
+  }, [handleClick]);
 
   return (
     <div className="grid grid-cols-4 rounded-xl grid-rows-6  w-[21rem] md:h-[30rem] md:w-[25rem]  h-[27rem] gap-0.5">
